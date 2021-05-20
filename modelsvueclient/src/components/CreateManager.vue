@@ -6,14 +6,14 @@
 
         <form style="width: 30% text-align: center">
             <label>Indtast Fornavn: </label>
-            <input type="text" v-model="form.firstname"/><br><br>
+            <input type="text" v-model="form.firstName"/><br><br>
             <label>Indtast Efternavn: </label>
-            <input type="text" v-model="form.lastname"/><br><br>
+            <input type="text" v-model="form.lastName"/><br><br>
             <label>Indtast Email: </label>
             <input type="text" v-model="form.email"/><br><br>
             <label>Indtast Password: </label>
-            <input type="password" v-model="form.password"/><br><br>
-            <button v-on:click="createManager">Opret Manager</button>
+            <input type="password" v-model="form.password"><br><br>
+            <button type="button" v-on:click="createManager()">Opret Manager</button>
         </form>
     </div>
 </template>
@@ -24,8 +24,8 @@ export default {
   data() {
     return {
       form: {
-        firstname: "",
-        lastname: "",
+        firstName: "",
+        lastName: "",
         email: "",
         password: "",
       },
@@ -40,6 +40,7 @@ export default {
                         body: JSON.stringify(this.form), // Assumes data is in an object called form
                         headers: new Headers({
                             "Content-Type": "application/json",
+                            "Authorization": "Bearer " + localStorage.getItem("token"),
                         }),
                     });
 

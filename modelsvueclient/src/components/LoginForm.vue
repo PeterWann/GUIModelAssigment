@@ -2,7 +2,7 @@
     <section>
         <input v-model="form.email" type="text" />
         <input v-model="form.password" type="password" />
-        <button v-on:click="login">Log In</button>
+        <button type="button" v-on:click="login">Log In</button>
     </section>
 </template>
 
