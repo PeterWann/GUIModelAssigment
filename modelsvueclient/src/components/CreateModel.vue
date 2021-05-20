@@ -11,32 +11,8 @@
       <input type="text" v-model="form.lastName" /><br /><br />
       <label>Indtast Email: </label>
       <input type="text" v-model="form.email" /><br /><br />
-      <label>Indtast Telefonnummer: </label>
-      <input type="text" v-model="form.phoneNo" /><br /><br />
-      <label>Indtast Adresse #1: </label>
-      <input type="text" v-model="form.addresLine1" /><br /><br />
-      <label>Indtast Adresse #2: </label>
-      <input type="text" v-model="form.addresLine2" /><br /><br />
-       <label>Indtast Postnummer: </label>
-      <input type="text" v-model="form.zip" /><br /><br />
-       <label>Indtast By: </label>
-      <input type="text" v-model="form.city" /><br /><br />
-      <label>Indtast Land: </label>
-      <input type="text" v-model="form.country" /><br /><br />
       <label>Indtast Fødselsdato: </label>
       <input type="date" v-model="form.birthDate" /><br /><br />
-      <label>Indtast Nationalitet: </label>
-      <input type="text" v-model="form.nationality" /><br /><br />
-      <label>Indtast Højde: </label>
-      <input type="text" v-model="form.height" /><br /><br />
-      <label>Indtast Skostørrelse: </label>
-      <input type="text" v-model="form.shoeSize" /><br /><br />
-      <label>Indtast Hårfarve: </label>
-      <input type="text" v-model="form.hairColor" /><br /><br />
-      <label>Indtast Øjenfarve: </label>
-      <input type="text" v-model="form.eyeColor" /><br /><br />
-      <label>Indtast Kommentarer: </label>
-      <input type="text" v-model="form.comments"/><br /><br />
       <label>Indtast Password: </label>
       <input type="password" v-model="form.password" /><br /><br />
       <button type="button" v-on:click="createModel()">Opret Model</button>
@@ -46,6 +22,7 @@
 
 <script>
 import router from "../router/index";
+
 export default {
   data() {
     return {
@@ -61,8 +38,8 @@ export default {
         country: "",
         birthDate: "",
         nationality: "",
-        height: "",
-        shoeSize: "",
+        height: 0,
+        shoeSize: 0,
         hairColor: "",
         eyeColor: "",
         comments: "",
@@ -79,7 +56,7 @@ export default {
           body: JSON.stringify(this.form), // Assumes data is in an object called form
           headers: new Headers({
             "Content-Type": "application/json",
-            "Authorization": "Bearer " + localStorage.getItem("token"),
+            Authorization: "Bearer " + localStorage.getItem("token"),
           }),
         });
 
@@ -100,3 +77,6 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+</style>

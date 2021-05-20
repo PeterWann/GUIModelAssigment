@@ -2,8 +2,10 @@
   <div id="app">
     <div id="nav">
       <router-link to="/">Home</router-link> |
-      <router-link v-if="getClaim() == 'Manager'" to="/createManager">Opret Manager</router-link> | 
-      <router-link v-if="getClaim() == 'Manager'" to="/createModel">Opret Model</router-link> |
+      <router-link v-if="getClaim() == 'Manager'" to="/createManager">Opret Manager</router-link><span v-if="getClaim() == 'Manager'"> | </span>
+      <router-link v-if="getClaim() == 'Manager'" to="/createModel">Opret Model</router-link><span v-if="getClaim() == 'Manager'"> | </span>
+      <router-link v-if="getClaim() == 'Manager'" to="/createJob">Opret Job</router-link><span v-if="getClaim() == 'Manager'"> | </span>
+      <router-link v-if="getClaim() == 'Manager'" to="/showJobs">Vis Jobs</router-link><span v-if="getClaim() == 'Manager'"> | </span>
       <router-link v-if="!isLoggedIn()" to="/login">Log in</router-link>
       <a class="nav" v-else v-on:click="logout()">Log Out</a>
     </div>

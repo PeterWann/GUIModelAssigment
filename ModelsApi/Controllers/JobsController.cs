@@ -53,7 +53,7 @@ namespace ModelsApi.Controllers
 
         // GET: api/Jobs/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Job>> GetJob(long id)
+        public async Task<ActionResult<EfJob>> GetJob(long id)
         {
             var job = await _context.Jobs.Where(j => j.EfJobId == id)
                 .Include(j => j.JobModels)
@@ -66,15 +66,7 @@ namespace ModelsApi.Controllers
                 return NotFound();
             }
 
-            var jobDto = _mapper.Map<Job>(job);
-
-            foreach (var jobModel in job.JobModels)
-            {
-                var modelDto = _mapper.Map<Model>(jobModel.Model);
-                jobDto.Models.Add(modelDto);
-            }
-
-            return jobDto;
+            return job;
         }
 
         // PUT: api/Jobs/5

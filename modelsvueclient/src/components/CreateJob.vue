@@ -1,39 +1,43 @@
 <template>
   <div>
-    <h1>Opret en ny manager</h1>
+    <h1>Opret et nyt job</h1>
 
     <h4>Indtast information og tryk opret!</h4>
 
-    <form style="width: 30% text-align: center">
-      <label>Indtast Fornavn: </label>
-      <input type="text" v-model="form.firstName" /><br /><br />
-      <label>Indtast Efternavn: </label>
-      <input type="text" v-model="form.lastName" /><br /><br />
-      <label>Indtast Email: </label>
-      <input type="text" v-model="form.email" /><br /><br />
-      <label>Indtast Password: </label>
-      <input type="password" v-model="form.password" /><br /><br />
-      <button type="button" v-on:click="createManager()">Opret Manager</button>
+    <form style="width: 100% text-align: center">
+      <label>Indtast Kunde: </label>
+      <input type="text" v-model="form.customer" /><br /><br />
+      <label>Indtast Startdato: </label>
+      <input type="date" v-model="form.startDate" /><br /><br />
+      <label>Indtast Antal Dage: </label>
+      <input type="number" v-model="form.days" /><br /><br />
+      <label>Indtast Lokation: </label>
+      <input type="text" v-model="form.location" /><br /><br />
+      <label>Indtast Kommentar: </label>
+      <input type="text" v-model="form.comments" style="height: 10em"/><br /><br />
+      <button type="button" v-on:click="createJob()">Opret Job</button>
     </form>
   </div>
 </template>
 
 <script>
 import router from "../router/index";
+
 export default {
   data() {
     return {
       form: {
-        firstName: "",
-        lastName: "",
-        email: "",
-        password: "",
+        customer: "",
+        startDate: "",
+        days: 0,
+        location: "",
+        comments: ""
       },
     };
   },
   methods: {
-    async createManager() {
-      let url = "https://localhost:44368/api/Managers";
+    async createJob() {
+      let url = "https://localhost:44368/api/Jobs";
       try {
         let response = await fetch(url, {
           method: "POST",
@@ -61,6 +65,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-</style>

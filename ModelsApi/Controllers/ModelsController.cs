@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using AutoMapper.Configuration.Conventions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -40,6 +41,7 @@ namespace ModelsApi.Controllers
         {
             return await _context.Models.ToListAsync().ConfigureAwait(false);
         }
+
 
         // GET: api/Models/5
         [HttpGet("{id}")]
