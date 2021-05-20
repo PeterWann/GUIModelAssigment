@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import About from "../views/About.vue";
 import LoginForm from "../components/LoginForm.vue"
+import CreateManager from "../components/CreateManager"
 
 Vue.use(VueRouter);
 
@@ -30,6 +31,17 @@ const routes = [
     path: "/login",
     name: "Login",
     component: LoginForm,
+  },
+  {
+    path: "/createManager",
+    name: "Create Manager",
+    component: CreateManager,
+    beforeEnter: function (to, from, next) {
+      if (to.name == "Create Manager" && localStorage.getItem("claim") == 'Manager') { next() }
+      else { next({
+        name: "Home"
+      }) }
+    }
   },
 ];
 

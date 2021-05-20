@@ -3,6 +3,7 @@
     <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link v-if="getClaim() == 'Manager'" to="/about">About</router-link> |
+      <router-link v-if="getClaim() == 'Manager'" to="/createManager">Opret Manager</router-link> | 
       <router-link v-if="!isLoggedIn()" to="/login">Log in</router-link>
       <a class="nav" v-else v-on:click="logout()">Log Out</a>
     </div>
