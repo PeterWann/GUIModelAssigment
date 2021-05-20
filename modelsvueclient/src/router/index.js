@@ -1,9 +1,9 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
-import About from "../views/About.vue";
 import LoginForm from "../components/LoginForm.vue"
 import CreateManager from "../components/CreateManager"
+import CreateModel from "../components/CreateModel"
 
 Vue.use(VueRouter);
 
@@ -12,20 +12,6 @@ const routes = [
     path: "/",
     name: "Home",
     component: Home,
-  },
-  {
-    path: "/about",
-    name: "About",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: About,
-    beforeEnter: function (to, from, next) {
-      if (to.name == "About" && localStorage.getItem("claim") == 'Manager') { next() }
-      else { next({
-        name: "Home"
-      }) }
-    }
   },
   {
     path: "/login",
@@ -38,6 +24,17 @@ const routes = [
     component: CreateManager,
     beforeEnter: function (to, from, next) {
       if (to.name == "Create Manager" && localStorage.getItem("claim") == 'Manager') { next() }
+      else { next({
+        name: "Home"
+      }) }
+    }
+  },
+  {
+    path: "/createModel",
+    name: "Create Model",
+    component: CreateModel,
+    beforeEnter: function (to, from, next) {
+      if (to.name == "Create Model" && localStorage.getItem("claim") == 'Manager') { next() }
       else { next({
         name: "Home"
       }) }
