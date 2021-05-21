@@ -36,13 +36,14 @@ export default {
 
           console.log(this.parseJwt(token.jwt));
           let claims = this.parseJwt(token.jwt);
+          
           localStorage.setItem(
             "claim",
             claims[
               "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
             ]
           );
-
+          localStorage.setItem("ModelId",claims["ModelId"]);
           router.push("/");
         } else {
           console.log("Server returned: ", response.statusText);

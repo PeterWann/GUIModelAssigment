@@ -82,7 +82,7 @@ const routes = [
     name: "Show Model Jobs",
     component: ShowModelJobs,
     beforeEnter: function (to, from, next) {
-      if (to.name == "Show Model Jobs" && localStorage.getItem("claim") != 'Manager') { next() }
+      if (to.name == "Show Model Jobs" && localStorage.getItem("claim") == 'Model') { next() }
       else { next({
         name: "Home"
       }) }
