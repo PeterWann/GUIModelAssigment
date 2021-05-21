@@ -1,6 +1,7 @@
 <template>
   <div>
-    <h1>Modelnavn: </h1>
+    <h1>Modelnavn: {{modelinfo.firstName + " " + modelinfo.lastName}}</h1>
+    
 
     <table id="jobs">
       <tr>
@@ -11,19 +12,54 @@
         <th>Kommentarer</th>
         <th>Se / Tilføj Udgifter</th>
       </tr>
+      <tr v-for="job in modelJobs" v-bind:key="job.efJobId">
+        <td>{{ job.customer }}</td>
+        <td>{{ date = new Date(job.startDate).toLocaleDateString() }}</td>
+        <td>{{ job.days }}</td>
+        <td>{{ job.location }}</td>
+        <td>{{ job.comments }}</td>
+        <td>DOLLARDOLLAR</td>
+      </tr>
     </table>
-    <br><br>
+
+    <br /><br />
   </div>
 </template>
 
 <script>
 export default {
+  name: "Models",
   data() {
     return {
-    modelId: localStorage.getItem('ModelId'),
-  }
-  }
-}
+      modelJobs: [],
+      modelinfo: {},
+      modelId: localStorage.getItem('ModelId'),
+    };
+  },
+  methods: {
+    getAllModelJobs() {
+      var url = "https://localhost:44368/api/Models/" + this.modelId;
+      fetch(url, {
+        method: "GET",
+        credentials: "include",
+        headers: {
+          "Authorization": "Bearer " + localStorage.getItem("token"),
+          "Content-Type": "application/json",
+        },
+      })
+        .then((res) =>
+          res.json().then((re) => {
+            this.modelinfo = re;
+            this.modelJobs = re.jobModels;
+          })
+        )
+        .catch((err) => console.error("Error:", err));
+    }
+  },
+  beforeMount() {
+    this.getAllModelJobs();
+  },
+};
 </script>
 
 <style scoped>

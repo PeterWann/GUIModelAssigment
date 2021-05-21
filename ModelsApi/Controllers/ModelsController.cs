@@ -6,6 +6,7 @@ using AutoMapper;
 using AutoMapper.Configuration.Conventions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
@@ -37,6 +38,7 @@ namespace ModelsApi.Controllers
 
         // GET: api/Models
         [HttpGet]
+
         public async Task<ActionResult<IEnumerable<EfModel>>> GetModels()
         {
             return await _context.Models.ToListAsync().ConfigureAwait(false);
