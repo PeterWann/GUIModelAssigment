@@ -1,7 +1,7 @@
 <template>
   <div>
-    <h1>Kunde: {{jobinfo.customer}} </h1>
-    <h3>Lokation: {{jobinfo.location}}</h3>
+    <h1>Kunde: {{ jobinfo.customer }}</h1>
+    <h3>Lokation: {{ jobinfo.location }}</h3>
 
     <h4>Modeller tilknyttet jobbet</h4>
     <table id="jobs">
@@ -17,10 +17,21 @@
         <td>{{ model.lastName }}</td>
         <td>{{ model.email }}</td>
         <td>{{ model.phoneNo }}</td>
-        <td><button v-on:click="deleteFromJob(model.efModelId)" style="border: none"><img src="https://img-premium.flaticon.com/png/512/864/864393.png?token=exp=1621582811~hmac=554423f7071826247e10e801cc532851" height="18em" width="18em"></button></td>
+        <td>
+          <button
+            v-on:click="deleteFromJob(model.efModelId)"
+            style="border: none"
+          >
+            <img
+              src="https://image.freepik.com/free-icon/trash-bin-symbol_318-10194.jpg"
+              height="18em"
+              width="18em"
+            />
+          </button>
+        </td>
       </tr>
     </table>
-    <br><br>
+    <br /><br />
     <h4>Tilknyt model til job</h4>
     <table id="jobs">
       <tr>
@@ -35,95 +46,111 @@
         <td>{{ model.lastName }}</td>
         <td>{{ model.email }}</td>
         <td>{{ model.phoneNo }}</td>
-        <td><button v-on:click="addToJob(model.efModelId)" style="border: none"><img src="https://image.flaticon.com/icons/png/512/149/149699.png" height="18em" width="18em"></button></td>
+        <td>
+          <button v-on:click="addToJob(model.efModelId)" style="border: none">
+            <img
+              src="https://image.flaticon.com/icons/png/512/149/149699.png"
+              height="18em"
+              width="18em"
+            />
+          </button>
+        </td>
       </tr>
     </table>
   </div>
 </template>
 
 <script>
-
-
 export default {
-
-name: "Models",
-data() {
-  return {
-    models: [],
-    jobinfo: {},
-    newmodels: [],
-  }
-},
-methods: {
+  name: "Models",
+  data() {
+    return {
+      models: [],
+      jobinfo: {},
+      newmodels: [],
+    };
+  },
+  methods: {
     addToJob(efModelId) {
-        var url = "https://localhost:44368/api/Jobs/" + this.currentJob() + "/model/" + efModelId;
-        fetch(url, {
-            method: 'POST',
-            credentials: 'include',
-            headers: {
-                    'Authorization': 'Bearer ' + localStorage.getItem("token"),
-                    'Content-Type': 'application/json'
-        }})
-        .then(location.reload())
+      var url =
+        "https://localhost:44368/api/Jobs/" +
+        this.currentJob() +
+        "/model/" +
+        efModelId;
+      fetch(url, {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"),
+          "Content-Type": "application/json",
+        },
+      }).then(location.reload());
     },
     getAllModels() {
-        var url = "https://localhost:44368/api/Models/";
-        fetch(url, {
-            method: 'GET',
-            credentials: 'include',
-            headers: {
-                    'Authorization': 'Bearer ' + localStorage.getItem("token"),
-                    'Content-Type': 'application/json'
-        }})
-        .then(res => res.json().then(re => {
+      var url = "https://localhost:44368/api/Models/";
+      fetch(url, {
+        method: "GET",
+        credentials: "include",
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"),
+          "Content-Type": "application/json",
+        },
+      })
+        .then((res) =>
+          res.json().then((re) => {
             this.newmodels = re;
-            
-            }))
-            .catch(err => console.error('Error:', err));
+          })
+        )
+        .catch((err) => console.error("Error:", err));
     },
     deleteFromJob(efModelId) {
-        var url = "https://localhost:44368/api/Jobs/" + this.currentJob() + "/model/" + efModelId;
-        fetch(url, {
-            method: 'DELETE',
-            credentials: 'include',
-            headers: {
-                    'Authorization': 'Bearer ' + localStorage.getItem("token"),
-                    'Content-Type': 'application/json'
-        }})
-        .then(location.reload())
-    },
-        getJobs() {
-        var jobModels = [];
-        var url = "https://localhost:44368/api/Jobs/" + this.currentJob();
-        fetch(url, {
-            
-                method: 'GET',
-                credentials: 'include',
-                headers: {
-                    'Authorization': 'Bearer ' + localStorage.getItem("token"),
-                    'Content-Type': 'application/json'
-                }})
-            .then(res => res.json().then(re => {
-                this.jobinfo = re;
-                jobModels = re.jobModels;
-                jobModels.forEach(m => {
-                    this.models.push(m.model);
-                })
-
-            }))
-            .catch(err => console.error('Error:', err));
+      var url =
+        "https://localhost:44368/api/Jobs/" +
+        this.currentJob() +
+        "/model/" +
+        efModelId;
+      fetch(url, {
+        method: "DELETE",
+        credentials: "include",
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"),
+          "Content-Type": "application/json",
         },
-        currentJob() {
-            let currentUrl = window.location.pathname;
-            let jobId = currentUrl.split("/");
-            return jobId[jobId.length - 1];
-        }
+      }).then(location.reload());
     },
-        beforeMount() {
-            this.getJobs();
-            this.getAllModels();
-        }
-}
+    getJobs() {
+      var jobModels = [];
+      var url = "https://localhost:44368/api/Jobs/" + this.currentJob();
+      fetch(url, {
+        method: "GET",
+        credentials: "include",
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"),
+          "Content-Type": "application/json",
+        },
+      })
+        .then((res) =>
+          res.json().then((re) => {
+            this.jobinfo = re;
+            jobModels = re.jobModels;
+            jobModels.forEach((m) => {
+              this.models.push(m.model);
+            });
+          })
+        )
+        .catch((err) => console.error("Error:", err));
+    },
+    currentJob() {
+      let currentUrl = window.location.pathname;
+      let jobId = currentUrl.split("/");
+      return jobId[jobId.length - 1];
+    },
+  },
+  beforeMount() {
+    this.getJobs();
+    this.getAllModels();
+  },
+};
 </script>
 
 <style scoped>
