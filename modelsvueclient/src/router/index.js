@@ -9,6 +9,9 @@ import ShowJobs from "../components/ShowJobs"
 import EditJobs from "../components/EditJobs"
 import ShowModelJobs from "../components/ShowModelJobs"
 import Expenses from "../components/Expenses"
+import CreateManagerSuccess from "../components/CreateManagerSuccess"
+import CreateModelSuccess from "../components/CreateModelSuccess"
+import CreateJobSuccess from "../components/CreateJobSuccess"
 
 Vue.use(VueRouter);
 
@@ -17,6 +20,21 @@ const routes = [
     path: "/",
     name: "Home",
     component: Home,
+  },
+  {
+    path: "/createManagerSuccess",
+    name: "CreateManagerSuccess",
+    component: CreateManagerSuccess,
+  },
+  {
+    path: "/createJobSuccess",
+    name: "CreateJobSuccess",
+    component: CreateJobSuccess,
+  },
+  {
+    path: "/createModelSuccess",
+    name: "CreateModelSuccess",
+    component: CreateModelSuccess,
   },
   {
     path: "/login",

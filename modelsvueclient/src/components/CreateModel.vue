@@ -85,7 +85,7 @@ export default {
 
           console.log(msg);
 
-          router.push("/");
+          router.push("/createModelSuccess");
         } else {
           console.log("Server returned: ", response.statusText);
         }
