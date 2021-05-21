@@ -23,7 +23,8 @@ export default {
     logout(){
       localStorage.removeItem('token');
       localStorage.removeItem('claim');
-      localStorage.removeItem('modelMail');
+      localStorage.removeItem('ModelId');
+      localStorage.removeItem('Id');
       this.$forceUpdate();
       return;
     },

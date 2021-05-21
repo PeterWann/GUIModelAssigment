@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Din model mail: {{model}} </h1>
+    <h1>Model email: {{ modelinfo }}</h1>
     
 
     <table id="jobs">
@@ -18,12 +18,7 @@
         <td>{{ job.days }}</td>
         <td>{{ job.location }}</td>
         <td>{{ job.comments }}</td>
-        <td><router-link :to="`/expenses/${job.efJobId}`"
-            ><img
-              src="http://pngimg.com/uploads/dollar_sign/dollar_sign_PNG21539.png"
-              widht="25em"
-              height="25em"
-          /></router-link></td>
+        <td><router-link :to="`/Expenses/${job.efJobId}`"><img src="https://banner2.cleanpng.com/20171216/5d0/dollar-sign-png-5a355146e059a3.4282492115134436549189.jpg" height="35em" width="50em"></router-link></td>
       </tr>
     </table>
 
@@ -37,7 +32,8 @@ export default {
   data() {
     return {
       modelJobs: [],
-      model: localStorage.getItem('modelMail')
+      modelinfo: localStorage.getItem('ModelId'),
+
     };
   },
   methods: {
