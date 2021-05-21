@@ -7,6 +7,7 @@ import CreateModel from "../components/CreateModel"
 import CreateJob from "../components/CreateJob"
 import ShowJobs from "../components/ShowJobs"
 import EditJobs from "../components/EditJobs"
+import ShowModelJobs from "../components/ShowModelJobs"
 
 Vue.use(VueRouter);
 
@@ -71,6 +72,17 @@ const routes = [
     component: EditJobs,
     beforeEnter: function (to, from, next) {
       if (to.name == "Edit Jobs" && localStorage.getItem("claim") == 'Manager') { next() }
+      else { next({
+        name: "Home"
+      }) }
+    }
+  },
+  {
+    path: "/showModelJobs",
+    name: "Show Model Jobs",
+    component: ShowModelJobs,
+    beforeEnter: function (to, from, next) {
+      if (to.name == "Show Model Jobs" && localStorage.getItem("claim") == 'Model') { next() }
       else { next({
         name: "Home"
       }) }

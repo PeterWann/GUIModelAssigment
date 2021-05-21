@@ -17,18 +17,7 @@
         <td>{{ model.lastName }}</td>
         <td>{{ model.email }}</td>
         <td>{{ model.phoneNo }}</td>
-        <td>
-          <button
-            v-on:click="deleteFromJob(model.efModelId)"
-            style="border: none"
-          >
-            <img
-              src="https://image.freepik.com/free-icon/trash-bin-symbol_318-10194.jpg"
-              height="18em"
-              width="18em"
-            />
-          </button>
-        </td>
+        <td><button v-on:click="deleteFromJob(model.efModelId)" style="border: none"><img src="https://assets.dryicons.com/uploads/icon/svg/2641/delete.svg" height="18em" width="18em"></button></td>
       </tr>
     </table>
     <br /><br />
