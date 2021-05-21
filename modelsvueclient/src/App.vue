@@ -24,6 +24,7 @@ export default {
       localStorage.removeItem('token');
       localStorage.removeItem('claim');
       localStorage.removeItem('ModelId');
+      localStorage.removeItem('Id');
       this.$forceUpdate();
       return;
     },
