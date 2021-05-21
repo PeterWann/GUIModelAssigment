@@ -17,7 +17,7 @@
         <td>{{ model.lastName }}</td>
         <td>{{ model.email }}</td>
         <td>{{ model.phoneNo }}</td>
-        <td><button v-on:click="deleteFromJob(model.efModelId)" style="border: none"><img src="https://img-premium.flaticon.com/png/512/864/864393.png?token=exp=1621582811~hmac=554423f7071826247e10e801cc532851" height="18em" width="18em"></button></td>
+        <td><button v-on:click="deleteFromJob(model.efModelId)" style="border: none"><img src="https://assets.dryicons.com/uploads/icon/svg/2641/delete.svg" height="18em" width="18em"></button></td>
       </tr>
     </table>
     <br><br>
