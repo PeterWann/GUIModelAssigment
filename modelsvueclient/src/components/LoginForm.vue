@@ -43,7 +43,11 @@ export default {
               "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
             ]
           );
-          localStorage.setItem("ModelId",claims["ModelId"]);
+          localStorage.setItem("modelMail",claims[
+            "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"
+            ]
+          );
+
           router.push("/");
         } else {
           console.log("Server returned: ", response.statusText);

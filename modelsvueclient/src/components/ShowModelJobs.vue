@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Modelnavn: {{modelinfo.firstName + " " + modelinfo.lastName}}</h1>
+    <h1>Din model mail: {{model}} </h1>
     
 
     <table id="jobs">
@@ -18,7 +18,12 @@
         <td>{{ job.days }}</td>
         <td>{{ job.location }}</td>
         <td>{{ job.comments }}</td>
-        <td>DOLLARDOLLAR</td>
+        <td><router-link :to="`/expenses/${job.efJobId}`"
+            ><img
+              src="http://pngimg.com/uploads/dollar_sign/dollar_sign_PNG21539.png"
+              widht="25em"
+              height="25em"
+          /></router-link></td>
       </tr>
     </table>
 
@@ -32,13 +37,12 @@ export default {
   data() {
     return {
       modelJobs: [],
-      modelinfo: {},
-      modelId: localStorage.getItem('ModelId'),
+      model: localStorage.getItem('modelMail')
     };
   },
   methods: {
     getAllModelJobs() {
-      var url = "https://localhost:44368/api/Models/" + this.modelId;
+      var url = "https://localhost:44368/api/Jobs/";
       fetch(url, {
         method: "GET",
         credentials: "include",
@@ -49,8 +53,7 @@ export default {
       })
         .then((res) =>
           res.json().then((re) => {
-            this.modelinfo = re;
-            this.modelJobs = re.jobModels;
+            this.modelJobs = re;
           })
         )
         .catch((err) => console.error("Error:", err));
