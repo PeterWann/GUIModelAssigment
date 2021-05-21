@@ -15,11 +15,18 @@
       </tr>
       <tr v-for="job in jobs" v-bind:key="job.efJobId">
         <td>{{ job.customer }}</td>
-        <td>{{ date = new Date(job.startDate).toLocaleDateString() }}</td>
+        <td>{{ (date = new Date(job.startDate).toLocaleDateString()) }}</td>
         <td>{{ job.days }}</td>
         <td>{{ job.location }}</td>
         <td>{{ job.comments }}</td>
-        <td><router-link :to="`/editJobs/${job.efJobId}`"><img src="https://image.flaticon.com/icons/png/512/1828/1828918.png" widht="25em" height="25em"></router-link></td>
+        <td>
+          <router-link :to="`/editJobs/${job.efJobId}`"
+            ><img
+              src="https://image.flaticon.com/icons/png/512/1828/1828918.png"
+              widht="25em"
+              height="25em"
+          /></router-link>
+        </td>
       </tr>
     </table>
   </div>
@@ -27,32 +34,35 @@
 
 <script>
 export default {
-name: "Jobs",
-data() {
-  return {
-    jobs: [],
-  }
-},
-methods: {
-        getJobs() {
-        var url = "https://localhost:44368/api/Jobs";
-        fetch(url, {
-                method: 'GET',
-                credentials: 'include',
-                headers: {
-                    'Authorization': 'Bearer ' + localStorage.getItem("token"),
-                    'Content-Type': 'application/json'
-                }})
-            .then(res => res.json().then(re => {
-                this.jobs = re;
-            }))
-            .catch(err => console.error('Error:', err));
-        }
+  name: "Jobs",
+  data() {
+    return {
+      jobs: [],
+    };
+  },
+  methods: {
+    getJobs() {
+      var url = "https://localhost:44368/api/Jobs";
+      fetch(url, {
+        method: "GET",
+        credentials: "include",
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"),
+          "Content-Type": "application/json",
+        },
+      })
+        .then((res) =>
+          res.json().then((re) => {
+            this.jobs = re;
+          })
+        )
+        .catch((err) => console.error("Error:", err));
     },
-        mounted() {
-            this.getJobs();
-        }
-}
+  },
+  mounted() {
+    this.getJobs();
+  },
+};
 </script>
 
 <style scoped>
